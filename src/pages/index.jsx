@@ -1,5 +1,6 @@
 import React from "react";
 import { SurveyList } from "../components/survey";
+import { Link } from "react-router-dom";
 
 export const Home = () => {
    const survey = [
@@ -39,6 +40,11 @@ export const Home = () => {
                );
             })}
          </section>
+         <Link
+            className="w-12 h-12 bg-primary rounded-full text-white flex items-center justify-center fixed bottom-4 right-4"
+            to="/new">
+            New
+         </Link>
       </>
    );
 };
