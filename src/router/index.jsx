@@ -3,12 +3,16 @@ import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import { Home } from "../pages";
 import { DefaultLayout } from "../layouts/default";
-import { Login } from "../pages/login";
-import { Register } from "../pages/register";
+import { Login } from "../pages/auth/login";
+import { Register } from "../pages/auth/register";
 import { NewSurvey } from "../pages/newSurvey";
+import { AuthLayouts } from "../layouts/auth";
+import { Logout } from "../pages/auth/logout";
+import { NotFound } from "../pages/NotFound";
 
 export const router = createBrowserRouter([
    {
+      path: "/",
       element: <DefaultLayout />,
       children: [
          {
@@ -19,14 +23,28 @@ export const router = createBrowserRouter([
             path: "new",
             element: <NewSurvey />,
          },
+         {
+            path: "*",
+            element: <NotFound />,
+         },
       ],
    },
    {
-      path: "login",
-      element: <Login />,
-   },
-   {
-      path: "register",
-      element: <Register />,
+      path: "auth",
+      element: <AuthLayouts />,
+      children: [
+         {
+            path: "login",
+            element: <Login />,
+         },
+         {
+            path: "register",
+            element: <Register />,
+         },
+         {
+            path: "logout",
+            element: <Logout />,
+         },
+      ],
    },
 ]);

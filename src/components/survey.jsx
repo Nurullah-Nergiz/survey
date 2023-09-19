@@ -1,14 +1,22 @@
 // @ts-nocheck
-import React from "react";
+import React, { useEffect } from "react";
 
-// SurveyList.propTypes = {
-//    answers: Object,
-// };
-export const SurveyList = ({ answers }) => {
-   const answerCount = Object.values(answers).reduce(
-      (acc, cur) => acc + cur,
-      0
+export const Survey = ({ survey }) => {
+   return (
+      <>
+         <div className="px-4 pt-4 bg-gray-100 rounded-md shadow-lg">
+            <p>{survey?.title}</p>
+            <SurveyList answers={survey.answers} />
+         </div>
+      </>
    );
+};
+
+export const SurveyList = ({ answers }) => {
+   let answerCount = 0;
+   useEffect(() => {
+      answerCount = Object.values(answers)?.reduce((acc, cur) => acc + cur, 0);
+   }, []);
    return (
       <ul className="list-disc list-outside">
          {Object.entries(answers).map(([key, val]) => {
@@ -25,16 +33,11 @@ export const SurveyList = ({ answers }) => {
    );
 };
 
-// SurveyListItem.propTypes = {
-//    name: String,
-//    width: Number,
-//    isActive: true,
-// };
 export const SurveyListItem = ({ name, width, isActive }) => {
    const w = { "--width": width + "%" };
    return (
       <li className="w-full flex mb-4 relative" style={w}>
-         <span className="absolute w-[var(--width)] h-full p-3 block bg-primary"></span>
+         <span className="absolute w-[var(--width)] h-full p-3 block bg-gray-300"></span>
          <label className="flex-1 h-7 my-3 flex items-center justify-between z-10">
             <input
                className="absolute left-[-99rem]"
