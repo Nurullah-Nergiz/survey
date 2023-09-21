@@ -5,7 +5,19 @@ import { Link } from "react-router-dom";
 import { getQuestions } from "../services/questions";
 
 export const Home = () => {
-   const [survey, setSurvey] = useState([]);
+   const [survey, setSurvey] = useState([
+      //  {
+      //    _id: "asasdad",
+      //    title: "demo 1",
+      //    questions: ["a", "b", "c", "d"],
+      //    answers: {
+      //       a: 10,
+      //       b: 5,
+      //       c: 3,
+      //       d: 0,
+      //    },
+      // }
+   ]);
 
    useEffect(() => {
       // getQuestions().then(({ data, status }) => {

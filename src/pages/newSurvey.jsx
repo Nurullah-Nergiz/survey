@@ -3,9 +3,6 @@ import { setQuestions } from "../services/questions";
 
 export const NewSurvey = () => {
    const [title, setTitle] = useState("");
-   /**
-    * type Array
-    */
    const [answers, setAnswers] = useState(["a", "s"]);
 
    const updateAnswer = (key, val) => {
@@ -14,12 +11,21 @@ export const NewSurvey = () => {
       setAnswers([...newAnswers]);
    };
 
-   const newAnswer = (k, { val, key }) => {
-      if (k == "Enter" && val.trim()) {
-         const pre = answers.slice(0, key);
+   const newAnswer = (key) => {
+      const pre = answers.slice(0, key);
+      const next = answers.slice(key, answers.length);
+      setAnswers([...pre, "", ...next]);
+   };
+
+   const deleteAnswer = (key) => {
+      if (answers.length > 1) {
+         const pre = answers.slice(0, 1 - key);
          const next = answers.slice(key, answers.length);
-         setAnswers([...pre, val, ...next]);
+         console.log(key, ...pre, ...next);
+         setAnswers([...pre, ...next]);
       }
+
+      console.log(answers.length);
    };
 
    const handler = () => {
@@ -35,11 +41,11 @@ export const NewSurvey = () => {
          <h1 className="my-3 pb-1 border-b border-current text-3xl">
             Create New Survey
          </h1>
-         <ul className="bg-white">
-            <li>
+         <ul className="p-4 bg-white rounded-lg shadow-lg">
+            <li className="mb-3">
                <p>Title</p>
                <input
-                  className="bg-gray-300"
+                  className="w-52 bg-gray-300"
                   type="text"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
@@ -47,23 +53,30 @@ export const NewSurvey = () => {
             </li>
             {answers.map((answer, key) => {
                return (
-                  <li key={key}>
+                  <li key={key} className="w-72 mb-3">
                      <p>Answer</p>
                      <input
-                        className="bg-gray-300"
+                        className="w-52 bg-gray-300"
                         type="text"
                         placeholder="Answer"
                         value={answer}
                         onChange={(e) => updateAnswer(key, e.target.value)}
-                        onKeyDown={(e) => {
-                           newAnswer(e.key, { val: e.target.value, key });
-                        }}
                      />
+                     <button
+                        className="mx-2 text-xl text-primary bx bx-plus"
+                        onClick={() => newAnswer(key)}></button>
+                     <button
+                        className="text-xl text-red-700 bx bx-x"
+                        onClick={() => deleteAnswer(key)}></button>
                   </li>
                );
             })}
-            <li>
-               <button onClick={handler}>Submit</button>
+            <li className="w-52">
+               <button
+                  className="ml-auto py-2 px-3 bg-primary text-white"
+                  onClick={handler}>
+                  Submit
+               </button>
             </li>
          </ul>
       </>

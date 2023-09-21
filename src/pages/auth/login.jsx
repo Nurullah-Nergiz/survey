@@ -1,19 +1,21 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { loginService } from "../../services/auth";
 import Cookies from "js-cookie";
 
 export const Login = () => {
    const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
+   const navigate = useNavigate();
 
    const handler = (e) => {
       e.preventDefault();
       loginService({ email, password })
-         .then((data) => {
-            if (data.status == 200) {
-               Cookies.set("user", JSON.stringify(data.data));
+         .then(({ status, data }) => {
+            if (status == 200) {
+               Cookies.set("user", JSON.stringify(data));
+               navigate("/");
             }
          })
          .catch((err) => console.error(err));
