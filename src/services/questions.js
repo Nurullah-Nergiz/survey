@@ -5,8 +5,8 @@ export const getQuestions = (id) =>
       method: "get",
    });
 
-export const setQuestions = (id, data) =>
-   instance(`/questions/${id}`, {
-      method: "get",
+export const setQuestions = (data) =>
+   instance(`/questions/`, {
+      method: "post",
       data,
    });

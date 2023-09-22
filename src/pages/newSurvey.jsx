@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { setQuestions } from "../services/questions";
+import { useNavigate } from "react-router-dom";
 
 export const NewSurvey = () => {
    const [title, setTitle] = useState("");
    const [answers, setAnswers] = useState(["a", "s"]);
+   const navigate = useNavigate();
 
    const updateAnswer = (key, val) => {
       const newAnswers = [...answers];
@@ -29,9 +31,9 @@ export const NewSurvey = () => {
    };
 
    const handler = () => {
-      setQuestions({ title, question: answers })
-         .then((data) => {
-            console.log(data);
+      setQuestions({ title, answers })
+         .then(({ data }) => {
+            navigate(`../surveys/${data._id}`);
          })
          .catch((err) => console.error(err));
    };
