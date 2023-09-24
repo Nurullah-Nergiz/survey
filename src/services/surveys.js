@@ -15,3 +15,9 @@ export const setSurveys = (data) =>
       method: "post",
       data,
    });
+
+export const putSurveys = (id, data) =>
+   instance(`/surveys/${id}`, {
+      method: "put",
+      data,
+   });

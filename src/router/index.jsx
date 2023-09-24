@@ -11,14 +11,11 @@ import { Logout } from "@/pages/auth/logout";
 import { NotFound } from "@/pages/NotFound";
 import { SurveyDetail } from "@/pages/surveys/detail";
 import { isAuthentication } from "@/guards/authentication";
+import { SurveyEdit } from "@/pages/surveys/edit";
 
 export const router = createBrowserRouter([
    {
-      element: isAuthentication() ? (
-         <DefaultLayout />
-      ) : (
-         <Navigate to="/auth/login" />
-      ),
+      element: <DefaultLayout />,
       children: [
          {
             path: "/",
@@ -33,6 +30,10 @@ export const router = createBrowserRouter([
             element: <SurveyDetail />,
          },
          {
+            path: "surveys/:id/edit",
+            element: <SurveyEdit />,
+         },
+         {
             path: "*",
             element: <NotFound />,
          },
@@ -40,7 +41,7 @@ export const router = createBrowserRouter([
    },
    {
       path: "auth",
-      element: !isAuthentication() ? <AuthLayouts /> : <Navigate to="/" />,
+      element: <AuthLayouts />,
       children: [
          {
             path: "login",
