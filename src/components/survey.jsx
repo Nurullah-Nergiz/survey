@@ -1,6 +1,6 @@
 import { SurveyContext } from "@/context/survey";
 import { getAnswers, setAnswers } from "@/services/answers";
-import { getQuestions } from "@/services/questions";
+import { getSurveys } from "@/services/surveys";
 import { useContext, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -12,7 +12,7 @@ export const Survey = ({ id, hasVoted }) => {
    }, [survey]);
 
    useEffect(() => {
-      getQuestions(id).then(({ data, status }) => {
+      getSurveys(id).then(({ data, status }) => {
          if (status == 200) setSurvey({ ...data, hasVoted });
          // else setError(true);
       });

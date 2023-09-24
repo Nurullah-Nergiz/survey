@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Survey } from "@/components/survey";
 import { Link } from "react-router-dom";
-import { getQuestions } from "@/services/questions";
+import { getSurveysMe } from "@/services/surveys";
 
 export const Home = () => {
    const [survey, setSurvey] = useState([
@@ -20,12 +20,11 @@ export const Home = () => {
    ]);
 
    useEffect(() => {
-      // getQuestions().then(({ data, status }) => {
-      //    if (status == 200) {
-      //       setSurvey([...Object.values(data)]);
-      //       console.log(Object.values(data));
-      //    }
-      // });
+      getSurveysMe().then(({ data, status }) => {
+         if (status == 200) {
+            setSurvey([...Object.values(data)]);
+         }
+      });
    }, []);
 
    return (
@@ -40,8 +39,12 @@ export const Home = () => {
          </section>
          <section className="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-7 gap-4">
             {/* Surveys Loop */}
-            {survey?.map((survey) => {
-               return <Survey survey={survey} key={survey._id} />;
+            {survey?.map(({ _id }) => {
+               return (
+                  <Link to={`./surveys/${_id}`} key={_id}>
+                     <Survey id={_id} hasVoted={true} />
+                  </Link>
+               );
             })}
          </section>
       </>

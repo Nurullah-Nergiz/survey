@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { setQuestions } from "../services/questions";
+import { setSurveys } from "../services/surveys";
 import { useNavigate } from "react-router-dom";
 
 export const NewSurvey = () => {
@@ -31,7 +31,7 @@ export const NewSurvey = () => {
    };
 
    const handler = () => {
-      setQuestions({ title, answers })
+      setSurveys({ title, answers })
          .then(({ data }) => {
             navigate(`../surveys/${data._id}`);
          })
