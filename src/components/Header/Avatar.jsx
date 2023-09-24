@@ -1,24 +1,26 @@
+import Cookies from "js-cookie";
 import React from "react";
 import { Link } from "react-router-dom";
 
 export const Avatar = () => {
    const user = {
-      firstName: "Nurullah",
-      lastName: "Nergiz",
+      ...JSON.parse(Cookies.get("user")).user,
       imgSrc: "https://picsum.photos/64/64",
    };
+
    return (
       <details className="relative">
          <summary className="mx-3 flex items-center cursor-pointer">
             <img
                src={user.imgSrc}
                alt="avatar"
-               className="w-10 h-10 p-1 border-2 border-transparent border-t-primary border-l-primary rounded-full"
+               className="w-12 h-12 p-1 border-2 border-transparent border-t-primary border-l-primary rounded-full"
             />
-            <span>
+            <span className="flex flex-col">
                <b className="text-sm">
                   {user.firstName} {user.lastName}
                </b>
+               <p className="text-xs">{user.email}</p>
             </span>
          </summary>
          <ul className="p-3 bg-white absolute left-3 right-3">
