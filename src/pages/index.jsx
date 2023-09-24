@@ -1,8 +1,8 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
-import { Survey } from "../components/survey";
+import { Survey } from "@/components/survey";
 import { Link } from "react-router-dom";
-import { getQuestions } from "../services/questions";
+import { getQuestions } from "@/services/questions";
 
 export const Home = () => {
    const [survey, setSurvey] = useState([
@@ -30,7 +30,7 @@ export const Home = () => {
 
    return (
       <>
-         <section className="my-3 pb-1 flex items-center justify-between border-b border-current">
+         <section className="my-3 py-2 px-3 bg-white flex items-center justify-between border-b border-current rounded-lg shadow-lg">
             <h1 className="flex-1  text-3xl">My Surveys</h1>
             <Link
                className="px-2 py-1 bg-primary inline-block rounded-lg text-white"

@@ -9,7 +9,7 @@ export const SurveyDetail = () => {
          {/* <div className="w-80 bg-primary">&nbsp;</div> */}
          <div className="flex-1">
             <h1>Title</h1>
-            <Survey id={id} />
+            <Survey id={id} hasVoted={true} />
          </div>
       </section>
    );
