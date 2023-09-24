@@ -12,8 +12,6 @@ dist
 dist-ssr
 *.local
 
-.gitignore
-src/guards/**/*
 
 # Editor directories and files
 .vscode/*

@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
-import { createBrowserRouter } from "react-router-dom";
+import { Navigate, createBrowserRouter } from "react-router-dom";
 import { Home } from "@/pages";
 import { DefaultLayout } from "@/layouts/default";
 import { Login } from "@/pages/auth/login";
@@ -10,11 +10,15 @@ import { AuthLayouts } from "@/layouts/auth";
 import { Logout } from "@/pages/auth/logout";
 import { NotFound } from "@/pages/NotFound";
 import { SurveyDetail } from "@/pages/surveys/detail";
+import { isAuthentication } from "@/guards/authentication";
 
 export const router = createBrowserRouter([
    {
-      path: "/",
-      element: <DefaultLayout />,
+      element: isAuthentication() ? (
+         <DefaultLayout />
+      ) : (
+         <Navigate to="/auth/login" />
+      ),
       children: [
          {
             path: "/",
@@ -36,7 +40,7 @@ export const router = createBrowserRouter([
    },
    {
       path: "auth",
-      element: <AuthLayouts />,
+      element: !isAuthentication() ? <AuthLayouts /> : <Navigate to="/" />,
       children: [
          {
             path: "login",
