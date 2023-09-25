@@ -21,7 +21,7 @@ export const SurveyEdit = () => {
    };
 
    const deleteAnswer = (key) => {
-      if (answers.length > 1) {
+      if (answers.length > 2) {
          const pre = answers.slice(0, 1 - key);
          const next = answers.slice(key, answers.length);
          console.log(key, ...pre, ...next);
@@ -45,6 +45,7 @@ export const SurveyEdit = () => {
          setTitle(data?.title);
          setAnswers(data?.answers);
       });
+      console.log(answers);
    }, []);
 
    return (
@@ -66,11 +67,12 @@ export const SurveyEdit = () => {
                return (
                   <li key={key} className="w-72 mb-3">
                      <p>Answer</p>
+                     <p>{answers[0]._id}</p>
                      <input
                         className="w-52 bg-gray-300"
                         type="text"
                         placeholder="Answer"
-                        value={answer._id}
+                        value={answer?._id}
                         onChange={(e) => updateAnswer(key, e.target.value)}
                      />
                      <button

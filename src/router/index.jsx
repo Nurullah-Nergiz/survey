@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
-import { Navigate, createBrowserRouter } from "react-router-dom";
-import { Home } from "@/pages";
+import { createBrowserRouter } from "react-router-dom";
+import { Home } from "@/pages/index";
 import { DefaultLayout } from "@/layouts/default";
 import { Login } from "@/pages/auth/login";
 import { Register } from "@/pages/auth/register";
@@ -10,7 +10,6 @@ import { AuthLayouts } from "@/layouts/auth";
 import { Logout } from "@/pages/auth/logout";
 import { NotFound } from "@/pages/NotFound";
 import { SurveyDetail } from "@/pages/surveys/detail";
-import { isAuthentication } from "@/guards/authentication";
 import { SurveyEdit } from "@/pages/surveys/edit";
 
 export const router = createBrowserRouter([

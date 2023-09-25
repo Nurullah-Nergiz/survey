@@ -1,26 +1,24 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { Header } from "../components/Header";
 import { isAuthentication } from "@/guards/authentication";
 
 export const DefaultLayout = () => {
    const navigate = useNavigate();
-   let isLogin = false;
+   const [isLogin] = useState(isAuthentication());
 
    useEffect(() => {
-      isLogin = isAuthentication();
-      if (isLogin === true) {
-         navigate("/");
+      if (!isLogin) {
+         navigate("/auth/login");
+         return;
       }
    }, [isLogin]);
 
    return (
       <>
          <Header />
-         <main className="flex-1">
-            <Outlet />
-         </main>
+         <main className="flex-1">{isLogin ? <Outlet /> : ""}</main>
       </>
    );
 };

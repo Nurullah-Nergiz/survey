@@ -4,16 +4,18 @@ import { Outlet, useNavigate } from "react-router-dom";
 
 export const AuthLayouts = () => {
    const navigate = useNavigate();
-   let isLogin = false;
+   const [isLogin] = useState(isAuthentication());
+
    useEffect(() => {
-      isLogin = isAuthentication();
-      if (isLogin === true) {
-         navigate("/");
+      if (!isLogin) {
+         navigate("/auth/login");
+         return;
       }
    }, [isLogin]);
+
    return (
       <>
-         <Outlet />
+         <main className="flex-1">{isLogin ? <Outlet /> : ""}</main>
       </>
    );
 };

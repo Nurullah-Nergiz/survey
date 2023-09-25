@@ -1,10 +1,11 @@
-import Cookies from "js-cookie";
+// eslint-disable-next-line no-unused-vars
 import React from "react";
+import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
 
 export const Avatar = () => {
    const user = {
-      ...JSON.parse(Cookies.get("user")).user,
+      ...(Cookies.get("user") ? JSON.parse(Cookies.get("user"))?.user : {}),
       imgSrc: "https://picsum.photos/64/64",
    };
 
