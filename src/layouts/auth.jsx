@@ -1,21 +1,11 @@
-import { isAuthentication } from "@/guards/authentication";
-import { useEffect } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 export const AuthLayouts = () => {
-   const navigate = useNavigate();
-   const [isLogin] = useState(isAuthentication());
-
-   useEffect(() => {
-      if (!isLogin) {
-         navigate("/");
-         return;
-      }
-   }, [isLogin]);
-
    return (
       <>
-         <main className="flex-1">{isLogin ? <Outlet /> : ""}</main>
+         <main className="flex-1">
+            <Outlet />
+         </main>
       </>
    );
 };

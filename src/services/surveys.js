@@ -21,3 +21,8 @@ export const putSurveys = (id, data) =>
       method: "put",
       data,
    });
+
+export const deleteSurveys = (id) =>
+   instance(`/surveys/${id}`, {
+      method: "delete",
+   });

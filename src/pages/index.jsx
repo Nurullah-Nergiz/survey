@@ -5,19 +5,7 @@ import { Link } from "react-router-dom";
 import { getSurveysMe } from "@/services/surveys";
 
 export const Home = () => {
-   const [survey, setSurvey] = useState([
-      //  {
-      //    _id: "asasdad",
-      //    title: "demo 1",
-      //    questions: ["a", "b", "c", "d"],
-      //    answers: {
-      //       a: 10,
-      //       b: 5,
-      //       c: 3,
-      //       d: 0,
-      //    },
-      // }
-   ]);
+   const [survey, setSurvey] = useState([]);
 
    useEffect(() => {
       getSurveysMe().then(({ data, status }) => {
@@ -42,7 +30,7 @@ export const Home = () => {
             {survey?.map(({ _id }) => {
                return (
                   <Link to={`./surveys/${_id}`} key={_id}>
-                     <Survey id={_id} hasVoted={true} />
+                     <Survey id={_id} hasVoted={false} headerButtons={false} />
                   </Link>
                );
             })}

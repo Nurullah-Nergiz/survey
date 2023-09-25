@@ -3,9 +3,9 @@ import { getSurveys, putSurveys } from "@/services/surveys";
 import { useNavigate, useParams } from "react-router-dom";
 
 export const SurveyEdit = () => {
-   const [title, setTitle] = useState("");
-   const [answers, setAnswers] = useState(["a", "s"]);
    const navigate = useNavigate();
+   const [title, setTitle] = useState("");
+   const [answers, setAnswers] = useState(["", ""]);
    const { id } = useParams();
 
    const updateAnswer = (key, val) => {
@@ -24,11 +24,8 @@ export const SurveyEdit = () => {
       if (answers.length > 2) {
          const pre = answers.slice(0, 1 - key);
          const next = answers.slice(key, answers.length);
-         console.log(key, ...pre, ...next);
          setAnswers([...pre, ...next]);
       }
-
-      console.log(answers.length);
    };
 
    const handler = () => {
@@ -41,11 +38,9 @@ export const SurveyEdit = () => {
 
    useEffect(() => {
       getSurveys(id).then(({ data }) => {
-         console.log(data);
          setTitle(data?.title);
-         setAnswers(data?.answers);
+         setAnswers(data?.answers.map((ans) => ans._id));
       });
-      console.log(answers);
    }, []);
 
    return (
@@ -67,12 +62,11 @@ export const SurveyEdit = () => {
                return (
                   <li key={key} className="w-72 mb-3">
                      <p>Answer</p>
-                     <p>{answers[0]._id}</p>
                      <input
                         className="w-52 bg-gray-300"
                         type="text"
                         placeholder="Answer"
-                        value={answer?._id}
+                        value={answer}
                         onChange={(e) => updateAnswer(key, e.target.value)}
                      />
                      <button

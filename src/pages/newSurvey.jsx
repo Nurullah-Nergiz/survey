@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 export const NewSurvey = () => {
    const [title, setTitle] = useState("");
-   const [answers, setAnswers] = useState(["a", "s"]);
+   const [answers, setAnswers] = useState(["", ""]);
    const navigate = useNavigate();
 
    const updateAnswer = (key, val) => {
@@ -14,20 +14,19 @@ export const NewSurvey = () => {
    };
 
    const newAnswer = (key) => {
-      const pre = answers.slice(0, key);
-      const next = answers.slice(key, answers.length);
-      setAnswers([...pre, "", ...next]);
+      if (answers.length <= 5) {
+         const pre = answers.slice(0, key);
+         const next = answers.slice(key, answers.length);
+         setAnswers([...pre, "", ...next]);
+      }
    };
 
    const deleteAnswer = (key) => {
-      if (answers.length > 1) {
+      if (answers.length > 2) {
          const pre = answers.slice(0, 1 - key);
          const next = answers.slice(key, answers.length);
-         console.log(key, ...pre, ...next);
          setAnswers([...pre, ...next]);
       }
-
-      console.log(answers.length);
    };
 
    const handler = () => {
@@ -49,6 +48,7 @@ export const NewSurvey = () => {
                <input
                   className="w-52 bg-gray-300"
                   type="text"
+                  placeholder="Title"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                />
