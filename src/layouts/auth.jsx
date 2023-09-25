@@ -8,7 +8,7 @@ export const AuthLayouts = () => {
 
    useEffect(() => {
       if (!isLogin) {
-         navigate("/auth/login");
+         navigate("/");
          return;
       }
    }, [isLogin]);
