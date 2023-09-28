@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
-import { createContext, useContext, useMemo, useState } from "react";
+import { createContext } from "react";
 
 export const SurveyContext = createContext({ title: "" });

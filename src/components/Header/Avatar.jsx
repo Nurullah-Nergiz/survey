@@ -1,19 +1,17 @@
 // eslint-disable-next-line no-unused-vars
-import React from "react";
+import React, { useContext } from "react";
 import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
+import { UserContext } from "@/context/user";
 
 export const Avatar = () => {
-   const user = {
-      ...(Cookies.get("user") ? JSON.parse(Cookies.get("user"))?.user : {}),
-      imgSrc: "https://picsum.photos/64/64",
-   };
+   const { user } = useContext(UserContext);
 
    return (
       <details className="relative">
          <summary className="mx-3 flex items-center cursor-pointer">
             <img
-               src={user.imgSrc}
+               src="https://picsum.photos/64/64"
                alt="avatar"
                className="w-12 h-12 p-1 border-2 border-transparent border-t-primary border-l-primary rounded-full"
             />
