@@ -14,7 +14,7 @@ export const Register = () => {
 
    const registerHandler = (e) => {
       e.preventDefault();
-      registerService({ firstName, lastName, email, password })
+      registerService({ firstName, lastName, email, password: md5(password) })
          .then(({ status, data }) => {
             if (status == 201) {
                Cookies.set("user", JSON.stringify(data));

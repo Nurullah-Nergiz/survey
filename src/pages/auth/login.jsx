@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { loginService } from "../../services/auth";
 import Cookies from "js-cookie";
+import md5 from "md5";
 
 export const Login = () => {
    const [email, setEmail] = useState("");
@@ -11,7 +12,8 @@ export const Login = () => {
 
    const handler = (e) => {
       e.preventDefault();
-      loginService({ email, password })
+
+      loginService({ email, password: md5(password) })
          .then(({ status, data }) => {
             if (status == 200) {
                Cookies.set("user", JSON.stringify(data));
