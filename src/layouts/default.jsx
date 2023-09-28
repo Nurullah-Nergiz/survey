@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate, useRoutes } from "react-router-dom";
 import { Header } from "../components/Header";
 import { isAuthentication } from "@/guards/authentication";
 

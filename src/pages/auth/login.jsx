@@ -45,10 +45,12 @@ export const Login = () => {
                   onChange={(e) => setPassword(e.target.value)}
                />
             </li>
-            <li>
-               <Link to="/register">Create new account</Link>
-            </li>
-            <li>
+            <li className="flex justify-between items-center">
+               <Link
+                  className="py-2 px-3 bg-white border border-gray-500 rounded-xl"
+                  to="../register">
+                  Register
+               </Link>
                <button
                   className="py-2 px-3 bg-primary rounded-lg"
                   type="submit">

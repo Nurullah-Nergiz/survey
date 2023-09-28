@@ -12,3 +12,9 @@ export const loginService = (data) =>
       method: "post",
       data,
    });
+
+export const registerService = (data) =>
+   instance("/register", {
+      method: "post",
+      data,
+   });
