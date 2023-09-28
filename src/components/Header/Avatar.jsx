@@ -1,6 +1,5 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useContext } from "react";
-import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
 import { UserContext } from "@/context/user";
 
@@ -17,9 +16,9 @@ export const Avatar = () => {
             />
             <span className="flex flex-col">
                <b className="text-sm">
-                  {user.firstName} {user.lastName}
+                  {user?.firstName} {user?.lastName}
                </b>
-               <p className="text-xs">{user.email}</p>
+               <p className="text-xs">{user?.email}</p>
             </span>
          </summary>
          <ul className="p-3 bg-white absolute left-3 right-3">

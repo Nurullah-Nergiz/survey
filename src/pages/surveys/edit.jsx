@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
 import { getSurveys, putSurveys } from "@/services/surveys";
 import { useNavigate, useParams } from "react-router-dom";
@@ -22,7 +23,7 @@ export const SurveyEdit = () => {
 
    const deleteAnswer = (key) => {
       if (answers.length > 2) {
-         const pre = answers.slice(0, 1 - key);
+         const pre = answers.slice(0, key - 1);
          const next = answers.slice(key, answers.length);
          setAnswers([...pre, ...next]);
       }

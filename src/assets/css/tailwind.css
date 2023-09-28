@@ -9,8 +9,25 @@
       @apply h-full bg-gradient-to-b from-gray-300 to-gray-100;
    }
 
+   details[open] {
+      @apply relative;
+   }
+
+   details[open] > summary {
+      @apply cursor-pointer;
+   }
+
+   details[open] > summary::before {
+      content: "";
+      @apply fixed w-screen h-screen top-0 left-0 z-50;
+   }
+
+   details[open] > *:not(summary) {
+      @apply absolute right-0 z-[100];
+   }
+
    input {
-      @apply px-2 py-1 bg-gray-300 border border-gray-700 rounded-xl;
+      @apply px-2 py-1 bg-gray-300 border border-gray-700 rounded-xl outline-none;
    }
 }
 

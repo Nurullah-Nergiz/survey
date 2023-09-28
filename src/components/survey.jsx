@@ -1,13 +1,12 @@
 import { SurveyContext } from "@/context/survey";
-import { NotFound } from "@/pages/NotFound";
 import { getAnswers, setAnswers } from "@/services/answers";
 import { deleteSurveys, getSurveys } from "@/services/surveys";
 import Cookies from "js-cookie";
 import { useContext, useEffect, useMemo, useState } from "react";
-import { Link, useNavigate, useRoutes } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Survey = ({ id, hasVoted, headerButtons }) => {
-   const [survey, setSurvey] = useState({ title: "", hasVoted });
+   const [survey, setSurvey] = useState();
 
    const shareData = useMemo(() => {
       return { ...survey, setSurvey };
@@ -18,7 +17,7 @@ export const Survey = ({ id, hasVoted, headerButtons }) => {
          if (status == 200) setSurvey({ ...data, hasVoted });
          // else setError(true);
       });
-   }, [id]);
+   }, []);
 
    return (
       <SurveyContext.Provider value={shareData}>
@@ -72,7 +71,6 @@ const SurveyList = () => {
       answers,
       hasVoted: defHasVoted,
       _id: id,
-      setSurvey,
    } = useContext(SurveyContext);
    const [answerCount, setAnswerCount] = useState(0);
    const [hasVoted, setHasVoted] = useState();
@@ -105,24 +103,22 @@ const SurveyList = () => {
    };
    return (
       <ul className="w-full">
-         {answers?.length ? (
-            answers.map(({ _id: name, totalAnswers }) => (
-               <SurveyListItem
-                  key={name + totalAnswers}
-                  val={totalAnswers}
-                  question={name}
-                  hasVoted={hasVoted}
-                  width={
-                     answerCount != 0
-                        ? ((totalAnswers * 100) / answerCount).toFixed(2)
-                        : 0.0
-                  }
-                  handler={handler}
-               />
-            ))
-         ) : (
-            <NotFound />
-         )}
+         {answers?.length
+            ? answers.map(({ _id: name, totalAnswers }) => (
+                 <SurveyListItem
+                    key={name + totalAnswers}
+                    val={totalAnswers}
+                    question={name}
+                    hasVoted={hasVoted}
+                    width={
+                       answerCount != 0
+                          ? ((totalAnswers * 100) / answerCount).toFixed(2)
+                          : 0.0
+                    }
+                    handler={handler}
+                 />
+              ))
+            : ""}
       </ul>
    );
 };
