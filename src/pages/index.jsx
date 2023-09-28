@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
-import { Survey } from "@/components/survey";
+import { Survey } from "@/components/surveys";
 import { Link } from "react-router-dom";
 import { getSurveysMe } from "@/services/surveys";
 

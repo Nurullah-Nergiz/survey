@@ -1,4 +1,4 @@
-import { Survey } from "@/components/survey";
+import { Survey } from "@/components/surveys";
 import { useParams } from "react-router-dom";
 
 export const SurveyDetail = () => {

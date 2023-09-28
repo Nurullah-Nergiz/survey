@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { registerService } from "@/services/auth";
 import Cookies from "js-cookie";
 import { Link, useNavigate } from "react-router-dom";
+import md5 from "md5";
 
 export const Register = () => {
    const [firstName, setFirstName] = useState("");
@@ -16,7 +17,6 @@ export const Register = () => {
       registerService({ firstName, lastName, email, password })
          .then(({ status, data }) => {
             if (status == 201) {
-               console.log(firstName, lastName, email, password);
                Cookies.set("user", JSON.stringify(data));
                navigate("/");
             } else {
