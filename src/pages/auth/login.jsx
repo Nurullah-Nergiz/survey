@@ -17,7 +17,9 @@ export const Login = () => {
          .then(({ status, data }) => {
             if (status == 200) {
                Cookies.set("user", JSON.stringify(data));
-               navigate("/");
+               setTimeout(() => {
+                  navigate("/");
+               }, 300);
             }
          })
          .catch((err) => console.error(err));

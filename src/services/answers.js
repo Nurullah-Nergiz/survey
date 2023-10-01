@@ -1,12 +1,12 @@
-import { instance } from ".";
+import axios from ".";
 
 export const getAnswers = (id) =>
-   instance(`/answers/${id}`, {
-      method: "get",
-   });
+	axios(`/answers/${id}`, {
+		method: "get",
+	});
 
 export const setAnswers = (id, data) =>
-   instance(`/answers/${id}`, {
-      method: "post",
-      data,
-   });
+	axios(`/answers/${id}`, {
+		method: "post",
+		data,
+	});

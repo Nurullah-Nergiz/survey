@@ -1,28 +1,28 @@
-import { instance } from ".";
+import axios from ".";
 
 export const getSurveysMe = () =>
-   instance(`/surveys/`, {
-      method: "get",
-   });
+	axios(`/surveys/`, {
+		method: "get",
+	});
 
 export const getSurveys = (id) =>
-   instance(`/surveys/${id}`, {
-      method: "get",
-   });
+	axios(`/surveys/${id}`, {
+		method: "get",
+	});
 
 export const setSurveys = (data) =>
-   instance(`/surveys/`, {
-      method: "post",
-      data,
-   });
+	axios(`/surveys/`, {
+		method: "post",
+		data,
+	});
 
 export const putSurveys = (id, data) =>
-   instance(`/surveys/${id}`, {
-      method: "put",
-      data,
-   });
+	axios(`/surveys/${id}`, {
+		method: "put",
+		data,
+	});
 
 export const deleteSurveys = (id) =>
-   instance(`/surveys/${id}`, {
-      method: "delete",
-   });
+	axios(`/surveys/${id}`, {
+		method: "delete",
+	});

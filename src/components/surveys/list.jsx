@@ -16,12 +16,10 @@ export const SurveyList = () => {
    const [hasVoted, setHasVoted] = useState();
 
    useEffect(() => {
-      console.log(defHasVoted);
       setHasVoted(defHasVoted);
       if (defHasVoted) {
          getAnswers(id)
             .then(({ data }) => {
-               console.log(data.hasVoted);
                setHasVoted(data.hasVoted);
             })
             .catch((err) => {

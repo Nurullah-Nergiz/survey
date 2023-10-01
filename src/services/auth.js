@@ -1,4 +1,4 @@
-import { instance } from ".";
+import axios from ".";
 
 /**
  *
@@ -8,13 +8,13 @@ import { instance } from ".";
  * @returns
  */
 export const loginService = (data) =>
-   instance("/login", {
-      method: "post",
-      data,
-   });
+	axios("/login", {
+		method: "post",
+		data,
+	});
 
 export const registerService = (data) =>
-   instance("/register", {
-      method: "post",
-      data,
-   });
+	axios("/register", {
+		method: "post",
+		data,
+	});
